@@ -1,6 +1,4 @@
-Now here's file 2 — src/app/(app)/parts/[id]/page.tsx:
-Go to GitHub → src/app/(app)/parts/ → Add file → Create new file → type [id]/page.tsx → use Ctrl+A then Ctrl+C to copy → paste → confirm last line is } → commit:
-tsx'use client'
+'use client'
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
