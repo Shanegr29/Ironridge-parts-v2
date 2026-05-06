@@ -30,7 +30,11 @@ export default function Page({ params }: { params: { id: string } }) {
   useEffect(() => {
     const load = async () => {
       const sb = createClient()
-   const {data:p} = await (sb.from('part') as any).select('*').eq('id',params.id).single()
+         const {data:p} = await (sb.from('part') as any).select('*').eq('id',params.id).single()
+      if (p) {
+        setPart(p)
+        setSellPrice(p.asking_price||'')
+        const {data:l} = await sb.from('donor_lift').select('id,make,model,year').eq('id',p.donor_lift_id).single()
         setLift(l)
       }
       setLoading(false)
