@@ -53,7 +53,7 @@ export default function Page() {
         const {error:ue}=await sb.storage.from('donor-lift-photos').upload(path,file)
         if(!ue){const {data}=sb.storage.from('donor-lift-photos').getPublicUrl(path);urls.push(data.publicUrl)}
       }
-      const {error:ie}=await sb.from('donor_lift').insert({
+      const {error:ie}=await (sb.from('donor_lift') as any).insert({
         make:f.make,model:f.model,
         year:f.year?parseInt(f.year):null,
         serial_number:f.serial||null,
