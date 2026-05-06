@@ -147,8 +147,8 @@ export default function Page({ params }: { params: { id: string } }) {
         ) : (
           <div style={{background:bgMid,border:bdr,borderRadius:'8px',overflow:'hidden'}}>
             {parts.map((p:any,i:number)=>{
-              const gradeColor = {A_tested_working:'#22c55e',B_takeout_untested:amb,C_for_parts_or_repair:'#f97316',D_core_only:'#ef4444'as any}[p.condition_grade]||dim
-              const gradeLabel = {A_tested_working:'A',B_takeout_untested:'B',C_for_parts_or_repair:'C',D_core_only:'D'as any}[p.condition_grade]||'?'
+              const gradeColor = (({'A_tested_working':'#22c55e','B_takeout_untested':amb,'C_for_parts_or_repair':'#f97316','D_core_only':'#ef4444'}) as Record<string,string>)[p.condition_grade]||dim
+const gradeLabel = (({'A_tested_working':'A','B_takeout_untested':'B','C_for_parts_or_repair':'C','D_core_only':'D'}) as Record<string,string>)[p.condition_grade]||'?'
               return (
                 <div key={p.id} style={{display:'flex',alignItems:'center',gap:'12px',padding:'13px 14px',borderTop:i>0?bdr:'none'}}>
                   <div style={{width:'32px',height:'32px',borderRadius:'6px',background:gradeColor+'25',color:gradeColor,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Barlow Condensed,sans-serif',fontWeight:900,fontSize:'16px',flexShrink:0}}>{gradeLabel}</div>
