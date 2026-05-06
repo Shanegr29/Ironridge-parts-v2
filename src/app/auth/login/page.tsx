@@ -2,79 +2,66 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
-  const supabase = createClient()
+  const [error, setError] = useState('')
 
   const handleLogin = async () => {
     setLoading(true)
-    setError(null)
+    setError('')
+    const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
       setError(error.message)
       setLoading(false)
     } else {
-      router.push('/donor-lifts')
-      router.refresh()
+      window.location.href = '/donor-lifts'
     }
   }
 
   return (
-    <div className="min-h-dvh bg-navy flex flex-col items-center justify-center p-6">
-      <div className="w-full max-w-sm">
-        {/* Logo */}
-        <div className="text-center mb-10">
-          <div className="font-display font-black text-3xl text-amber tracking-widest uppercase">
-            ⬡ IronRidge
-          </div>
-          <div className="text-xs text-ir-text-dim tracking-[0.2em] uppercase mt-1">
-            Parts Department
-          </div>
+    <div style={{ minHeight: '100dvh', background: '#111520', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <div style={{ width: '100%', maxWidth: '360px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontWeight: 900, fontSize: '28px', color: '#f59e0b', letterSpacing: '3px', textTransform: 'uppercase' }}>⬡ IronRidge</div>
+          <div style={{ fontSize: '11px', color: '#a8b2c4', letterSpacing: '3px', textTransform: 'uppercase', marginTop: '4px' }}>Parts Department</div>
         </div>
-
-        {/* Form */}
-        <div className="space-y-4">
-          <div className="flex flex-col gap-2">
-            <label className="text-label uppercase text-ir-text-dim">Email</label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <label style={{ fontSize: '11px', color: '#a8b2c4', textTransform: 'uppercase', letterSpacing: '1px' }}>Email</label>
             <input
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              placeholder="you@ironridge.com"
-              className="min-h-touch bg-steel-light border border-ir-border rounded-ir px-4 text-ir-text text-base focus:outline-none focus:border-amber"
+              placeholder="your@email.com"
+              style={{ height: '52px', padding: '0 16px', background: '#2f3750', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '8px', color: '#e8eaf0', fontSize: '16px', outline: 'none' }}
             />
           </div>
-
-          <div className="flex flex-col gap-2">
-            <label className="text-label uppercase text-ir-text-dim">Password</label>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <label style={{ fontSize: '11px', color: '#a8b2c4', textTransform: 'uppercase', letterSpacing: '1px' }}>Password</label>
             <input
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="min-h-touch bg-steel-light border border-ir-border rounded-ir px-4 text-ir-text text-base focus:outline-none focus:border-amber"
               onKeyDown={e => e.key === 'Enter' && handleLogin()}
+              style={{ height: '52px', padding: '0 16px', background: '#2f3750', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '8px', color: '#e8eaf0', fontSize: '16px', outline: 'none' }}
             />
           </div>
-
           {error && (
-            <div className="text-ir-red text-sm bg-red-500/10 border border-red-500/20 rounded-ir px-4 py-3">
+            <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '8px', padding: '12px 16px', color: '#ef4444', fontSize: '13px' }}>
               {error}
             </div>
           )}
-
           <button
             onClick={handleLogin}
-            disabled={loading || !email || !password}
-            className="w-full min-h-touch-lg bg-amber text-navy font-display font-bold text-base tracking-widest uppercase rounded-ir disabled:opacity-50 active:scale-[0.98] transition-transform"
+            disabled={loading}
+            style={{ height: '56px', background: '#f59e0b', color: '#111', border: 'none', borderRadius: '8px', fontFamily: 'Barlow Condensed, sans-serif', fontWeight: 700, fontSize: '16px', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer' }}
           >
-            {loading ? 'Signing in…' : 'Sign In'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </div>
       </div>
