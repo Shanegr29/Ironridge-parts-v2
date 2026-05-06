@@ -150,17 +150,16 @@ export default function Page({ params }: { params: { id: string } }) {
               const gradeColor = (({'A_tested_working':'#22c55e','B_takeout_untested':amb,'C_for_parts_or_repair':'#f97316','D_core_only':'#ef4444'}) as Record<string,string>)[p.condition_grade]||dim
 const gradeLabel = (({'A_tested_working':'A','B_takeout_untested':'B','C_for_parts_or_repair':'C','D_core_only':'D'}) as Record<string,string>)[p.condition_grade]||'?'
               return (
-                <div key={p.id} style={{display:'flex',alignItems:'center',gap:'12px',padding:'13px 14px',borderTop:i>0?bdr:'none'}}>
-                  <div style={{width:'32px',height:'32px',borderRadius:'6px',background:gradeColor+'25',color:gradeColor,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Barlow Condensed,sans-serif',fontWeight:900,fontSize:'16px',flexShrink:0}}>{gradeLabel}</div>
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontWeight:600,fontSize:'14px',color:txt,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{p.part_type}{p.part_subtype?' — '+p.part_subtype:''}</div>
-                    <div style={{fontSize:'11px',color:dim,marginTop:'2px'}}>{p.bin_location_id||'No location'} · {p.status?.replace(/_/g,' ')}</div>
-                  </div>
-                  <div style={{textAlign:'right',flexShrink:0}}>
-                    <div style={{fontFamily:'Barlow Condensed,sans-serif',fontWeight:700,fontSize:'16px',color:txt}}>${p.asking_price||'—'}</div>
-                  </div>
-                </div>
-              )
+               <a key={p.id} href={'/parts/'+p.id} style={{display:'flex',alignItems:'center',gap:'12px',padding:'13px 14px',borderTop:i>0?bdr:'none',textDecoration:'none'}}>
+  <div style={{width:'32px',height:'32px',borderRadius:'6px',background:gradeColor+'25',color:gradeColor,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Barlow Condensed,sans-serif',fontWeight:900,fontSize:'16px',flexShrink:0}}>{gradeLabel}</div>
+  <div style={{flex:1,minWidth:0}}>
+    <div style={{fontWeight:600,fontSize:'14px',color:txt,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{p.part_type}{p.part_subtype?' — '+p.part_subtype:''}</div>
+    <div style={{fontSize:'11px',color:dim,marginTop:'2px'}}>{p.bin_location_id||'No location'} · {p.status?.replace(/_/g,' ')}</div>
+  </div>
+  <div style={{textAlign:'right',flexShrink:0}}>
+    <div style={{fontFamily:'Barlow Condensed,sans-serif',fontWeight:700,fontSize:'16px',color:txt}}>${p.asking_price||'—'}</div>
+  </div>
+</a>
             })}
           </div>
         )}
