@@ -1,0 +1,22 @@
+{
+  "name": "IronRidge Parts",
+  "short_name": "IR Parts",
+  "description": "Used forklift parts inventory",
+  "start_url": "/donor-lifts",
+  "display": "standalone",
+  "background_color": "#1a1f2e",
+  "theme_color": "#111520",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
