@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
     title: 'IR Parts',
   },
-Just remove the manifest line. Commit and test. If React hydrates properly after that, the login will work.
 }
 
 export const viewport: Viewport = {
