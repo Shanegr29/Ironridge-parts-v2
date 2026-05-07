@@ -5,11 +5,12 @@ export const metadata: Metadata = {
   title: 'IronRidge Parts',
   description: 'Used forklift parts inventory management',
   manifest: '/manifest.json',
-  appleWebApp: {
+ appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
     title: 'IR Parts',
   },
+Just remove the manifest line. Commit and test. If React hydrates properly after that, the login will work.
 }
 
 export const viewport: Viewport = {
