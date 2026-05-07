@@ -18,7 +18,7 @@ export default function LoginPage() {
       setError(error.message)
       setLoading(false)
     } else {
-      window.location.href = '/donor-lifts'
+      window.location.href = window.location.origin + '/donor-lifts'
     }
   }
 
