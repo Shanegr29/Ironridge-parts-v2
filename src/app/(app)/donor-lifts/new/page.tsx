@@ -176,7 +176,7 @@ export default function Page() {
 
       {err&&<div style={{background:'rgba(239,68,68,0.1)',border:'1px solid rgba(239,68,68,0.2)',borderRadius:'8px',padding:'12px 16px',color:'#ef4444',fontSize:'13px',margin:'0 16px 16px'}}>{err}</div>}
 
-      <div style={{position:'fixed',bottom:0,left:0,right:0,padding:'16px',background:bg,borderTop:bdr}}>
+      <div style={{position:'fixed',bottom:'72px',left:0,right:0,padding:'16px',background:bg,borderTop:bdr}}>
         <button onClick={save} disabled={saving} style={{width:'100%',height:'60px',background:amb,color:'#111',border:'none',borderRadius:'8px',fontFamily:'Barlow Condensed,sans-serif',fontWeight:700,fontSize:'18px',letterSpacing:'2px',textTransform:'uppercase',cursor:'pointer'}}>
           {saving?'Saving...':'Save Donor Lift'}
         </button>
