@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
 export default function LoginPage() {
@@ -8,16 +8,24 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  useEffect(() => {
+    if (localStorage.getItem('ir_auth') === 'true') {
+      window.location.href = '/donor-lifts'
+    }
+  }, [])
+
   const handleLogin = async () => {
     setLoading(true)
     setError('')
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
-      setError(error.message)
+      setError('Invalid email or password.')
       setLoading(false)
     } else {
-      window.location.replace('/donor-lifts')
+      localStorage.setItem('ir_auth', 'true')
+      localStorage.setItem('ir_email', email)
+      window.location.href = '/donor-lifts'
     }
   }
 
